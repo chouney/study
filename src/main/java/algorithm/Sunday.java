@@ -7,7 +7,7 @@ import java.util.Arrays;
  */
 public class Sunday {
     public static int search(char[] pattern,char ch){
-        //1.这里是逆向查询
+        //.gitignre.这里是逆向查询
         for(int i = pattern.length-1 ;i>=0;i--){
             if(pattern[i]==ch){
                 return i;

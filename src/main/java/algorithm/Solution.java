@@ -1,43 +1,48 @@
 package algorithm;
 
 import java.util.*;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.FutureTask;
 
 public class Solution {
-    public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
-        LinkedList<TreeNode> deque = new LinkedList<TreeNode>();
-        List ans = new ArrayList();
-        boolean flag = false;
-        if(root == null){
-            return ans;
+    public String largestNumber(int[] nums) {
+        Integer[] n = new Integer[nums.length];
+        for(int i = 0;i<nums.length;i++){
+            n[i] = nums[i];
         }
-        deque.push(root);
-        while(!deque.isEmpty()){
-            List arr = new ArrayList();
-            int size = deque.size();
-            flag =!flag;
-            while(!tmp.isEmpty()){
-                if(flag){
-                    TreeNode node = deque.removeLast();
-                    arr.add(node.val);
-                    if(node.left !=null){
-                        deque.addFirst(node.left);
-                    }
-                    if(node.right !=null){
-                        deque.addFirst(node.right);
-                    }
-                }else{
-                    TreeNode node = deque.removeFirst();
-                    arr.add(node.val);
-                    if(node.right !=null){
-                        deque.addLast(node.right);
-                    }
-                    if(node.left !=null){
-                        deque.addLast(node.left);
-                    }
+        Arrays.sort(n,new Comparator<Integer>(){
+            public int compare(Integer o1,Integer o2){
+                int count1=0,count2=0,to1=o1,to2=o2;
+                while(to1!=0){
+                    to1/=10;
+                    count1++;
                 }
+                while(to2!=0){
+                    to2/=10;
+                    count2++;
+                }
+                count1 = count1 ==0 ? 1 : count1;
+                count2 = count2 ==0 ? 1 : count2;
+                double op1 = o1*Math.pow(10,count2)+o2;
+                double op2 = o2*Math.pow(10,count1)+o1;
+                return op1 == op2 ? 0 : (op1 > op2 ? -1 : 1) ;
             }
-            ans.add(arr);
+        });
+        StringBuilder s = new StringBuilder();
+        if(n.length>0 && n[0] == 0){
+            s.append(0);
+            return s.toString();
         }
-        return ans;
+        for(int i = 0;i<n.length;i++){
+            s.append(n[i]);
+        }
+        return s.toString();
+    }
+    public static void main(String[] args) {
+        Solution s = new Solution();
+        new StringBuilder().length();
+        System.out.println(s.largestNumber(new int[]{0,9,8,7,6,5,4,3,2,1}));
     }
 }
