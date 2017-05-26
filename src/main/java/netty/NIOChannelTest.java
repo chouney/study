@@ -1,14 +1,11 @@
 package netty;
 
+
 import java.io.*;
 import java.net.InetSocketAddress;
-import java.net.ServerSocket;
-import java.net.Socket;
+import java.net.SocketAddress;
 import java.nio.ByteBuffer;
-import java.nio.MappedByteBuffer;
-import java.nio.channels.FileChannel;
-import java.nio.channels.ServerSocketChannel;
-import java.nio.channels.SocketChannel;
+import java.nio.channels.*;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadFactory;
@@ -19,16 +16,17 @@ import java.util.concurrent.ThreadFactory;
  */
 public class NIOChannelTest {
     ExecutorService pool = Executors.newCachedThreadPool(new ThreadFactory() {
-        int count=0;
+        int count = 0;
+
         public Thread newThread(Runnable r) {
-            return new Thread(r,"ZQX_THREAD"+count++);
+            return new Thread(r, "ZQX_THREAD" + count++);
         }
     });
     NIOByteBufferTest byteBufferTest = new NIOByteBufferTest(ByteBuffer.allocateDirect(100));
 
     public void testFileChannel() throws IOException {
         //创建了一个可随机读写的通道
-        final RandomAccessFile raf = new RandomAccessFile(new File("./fileChannelTest"),"rw");
+        final RandomAccessFile raf = new RandomAccessFile(new File("./fileChannelTest"), "rw");
         final FileChannel f = raf.getChannel();
         pool.execute(byteBufferTest.new WriteTask());
         pool.execute(byteBufferTest.new ReadTask() {
@@ -45,7 +43,7 @@ public class NIOChannelTest {
                     in.flip();
                     byte[] bytes = new byte[in.remaining()];
                     in.get(bytes);
-                    System.out.println(NIOByteBufferTest.toObject(bytes,String.class));
+                    System.out.println(NIOByteBufferTest.toObject(bytes, String.class));
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -53,7 +51,7 @@ public class NIOChannelTest {
         });
     }
 
-    public void testSocketChannel(){
+    public void testSocketChannel() {
         pool.execute(byteBufferTest.new WriteTask());
         pool.execute(byteBufferTest.new ReadTask() {
             @Override
@@ -63,8 +61,8 @@ public class NIOChannelTest {
                     socketChannel = SocketChannel.open();
                     //非阻塞模式
                     socketChannel.configureBlocking(false);
-                    socketChannel.connect(new InetSocketAddress("localhost",8087));
-                    while(! socketChannel.finishConnect()){
+                    socketChannel.connect(new InetSocketAddress("localhost", 8087));
+                    while (!socketChannel.finishConnect()) {
                         System.out.println("connectting");
                     }
                     System.out.println("connecting finished");
@@ -87,20 +85,20 @@ public class NIOChannelTest {
                     //serverSocketChannel.configureBlocking(true);
                     ByteBuffer in = ByteBuffer.allocateDirect(100);
                     System.out.println("waiting for connection");
-                    while(true){
+                    while (true) {
                         SocketChannel socketChannel = serverSocketChannel.accept();
-                        if(socketChannel == null){
+                        if (socketChannel == null) {
                             try {
                                 Thread.sleep(1000);
                             } catch (InterruptedException e) {
                                 e.printStackTrace();
                             }
-                        }else{
+                        } else {
                             socketChannel.read(in);
                             in.rewind();
                             byte[] bytes = new byte[in.remaining()];
                             in.get(bytes);
-                            System.out.println(NIOByteBufferTest.toObject(bytes,String.class));
+                            System.out.println(NIOByteBufferTest.toObject(bytes, String.class));
                             socketChannel.close();
                             //读完缓冲区必须clear，
                             in.clear();
@@ -114,8 +112,74 @@ public class NIOChannelTest {
         });
     }
 
+    //数据包通道测试UDP/IP
+    public void testDatagramChannel() {
+        pool.execute(byteBufferTest.new WriteTask());
+        pool.execute(byteBufferTest.new ReadTask() {
+            @Override
+            public void processByteBuffer() {
+                //只需要绑定端口，发送时指定IP即可
+                try (DatagramChannel datagramChannel = DatagramChannel.open()) {
+                    datagramChannel.bind(new InetSocketAddress(10087));
+                    datagramChannel.configureBlocking(false);
+                    System.out.println("客户端线程已发送");
+                    datagramChannel.send(this.buffer1, new InetSocketAddress("127.0.0.1", 10086));
+                    SocketAddress address = null;
+                    this.buffer1.clear();
+                    while ((address = datagramChannel.receive(this.buffer1)) == null) ;
+                    this.buffer1.flip();
+                    byte[] bytes = new byte[this.buffer1.remaining()];
+                    this.buffer1.get(bytes);
+                    System.out.println("客户端线程已接收：" + NIOByteBufferTest.toObject(bytes, String.class));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        pool.execute(new Runnable() {
+            @Override
+            public void run() {
+                try (DatagramChannel datagramChannel = DatagramChannel.open()) {
+                    datagramChannel.bind(new InetSocketAddress(10086));
+                    datagramChannel.configureBlocking(false);
+                    ByteBuffer byteBuffer = ByteBuffer.allocateDirect(100);
+                    while (true) {
+                        byteBuffer.clear();
+                        SocketAddress address = datagramChannel.receive(byteBuffer);
+                        if (address != null) {
+                            byteBuffer.flip();
+                            byte[] bytes = new byte[byteBuffer.remaining()];
+                            byteBuffer.get(bytes);
+                            System.out.println("监听线程接收：" + NIOByteBufferTest.toObject(bytes, String.class));
+                            byteBuffer.clear();
+                            byteBuffer.put(NIOByteBufferTest.toByte("监听线程已收到"));
+                            byteBuffer.flip();
+                            datagramChannel.send(byteBuffer, address);
+                        }
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+
+    //管道
+    public void testPipe(){
+        pool.execute(byteBufferTest.new WriteTask());
+        pool.execute(byteBufferTest.new ReadTask() {
+            @Override
+            public void processByteBuffer() {
+//                Pipe pipe = Pipe.open();
+//                pipe.
+            }
+        });
+    }
+
     public static void main(String[] args) throws IOException {
         NIOChannelTest n = new NIOChannelTest();
-        n.testSocketChannel();
+        n.testDatagramChannel();
     }
 }
