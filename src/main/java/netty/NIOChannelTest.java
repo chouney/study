@@ -56,9 +56,7 @@ public class NIOChannelTest {
         pool.execute(byteBufferTest.new ReadTask() {
             @Override
             public void processByteBuffer() {
-                SocketChannel socketChannel = null;
-                try {
-                    socketChannel = SocketChannel.open();
+                try(SocketChannel socketChannel = SocketChannel.open()) {
                     //非阻塞模式
                     socketChannel.configureBlocking(false);
                     socketChannel.connect(new InetSocketAddress("localhost", 8087));
@@ -67,7 +65,6 @@ public class NIOChannelTest {
                     }
                     System.out.println("connecting finished");
                     socketChannel.write(this.buffer1);
-                    socketChannel.close();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -75,9 +72,7 @@ public class NIOChannelTest {
         });
         pool.execute(new Runnable() {
             public void run() {
-                ServerSocketChannel serverSocketChannel = null;
-                try {
-                    serverSocketChannel = ServerSocketChannel.open();
+                try(ServerSocketChannel serverSocketChannel = ServerSocketChannel.open()) {
                     serverSocketChannel.bind(new InetSocketAddress(8087));
                     //非阻塞模式
                     serverSocketChannel.configureBlocking(false);
