@@ -23,6 +23,7 @@ public class NIOSelectorTest {
     Executor executor = Executors.newCachedThreadPool();
     NIOByteBufferTest nioByteBufferTest = new NIOByteBufferTest(ByteBuffer.allocateDirect(100));
 
+    public static volatile boolean stop = false;
     /**
      * 测试构建一个基于3个serverSocket通道的就绪选择器，并根据发送不同socket通道测试选择器功能
      */
@@ -45,7 +46,7 @@ public class NIOSelectorTest {
                 serverSocketChannel3.configureBlocking(false);
                 serverSocketChannel3.register(selector, serverSocketChannel3.validOps());
 
-                while(true) {
+                while(!stop) {
                     /**
                      * 选择器的用法通常是调用一次select方法，然后获取他的selectKey()，遍历去除后删除
                      */
@@ -70,12 +71,16 @@ public class NIOSelectorTest {
                             byte[] bytes = new byte[buffer.remaining()];
                             buffer.get(bytes);
                             System.out.println(socketChannel.getRemoteAddress()+ " "+ socketChannel.getLocalAddress() + " , serverSocket,:" + NIOByteBufferTest.toObject(bytes, String.class));
-                            //一次请求后需要释放通道，否则选择器会认为该通道一直就绪会一直取数据
+                            //端链路关闭时需要释放通道，否则选择器会认为该通道一直就绪会一直取数据。同时也别忘了取消键
                             socketChannel.close();
+                            selectionKey.cancel();
                         }
                         //就绪键集合需要手动删除，因为防止未处理的通道被一下轮就绪选择覆盖。
                         iterator.remove();
                     }
+                }
+                if(selector!=null){
+                    selector.close();
                 }
 
             } catch (ClosedChannelException e) {

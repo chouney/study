@@ -34,7 +34,7 @@ public class NIOByteBufferTest {
             this.buffer1 = buffer;
         }
 
-        public abstract void processByteBuffer();
+        public abstract void processByteBuffer() throws IOException;
         public void run() {
             while (true) {
                 try {
@@ -46,6 +46,8 @@ public class NIOByteBufferTest {
                     canWrite.signalAll();
                     lock.unlock();
                 } catch (InterruptedException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
                     e.printStackTrace();
                 }
             }
