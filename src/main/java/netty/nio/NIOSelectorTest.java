@@ -1,6 +1,6 @@
 // Copyright (C) 2017 Meituan
 // All rights reserved
-package netty;
+package netty.nio;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
@@ -10,7 +10,6 @@ import java.util.Iterator;
 import java.util.Set;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
-import java.util.regex.Pattern;
 
 /**
  * 选择器练习
@@ -24,6 +23,7 @@ public class NIOSelectorTest {
     NIOByteBufferTest nioByteBufferTest = new NIOByteBufferTest(ByteBuffer.allocateDirect(100));
 
     public static volatile boolean stop = false;
+
     /**
      * 测试构建一个基于3个serverSocket通道的就绪选择器，并根据发送不同socket通道测试选择器功能
      */
@@ -35,18 +35,18 @@ public class NIOSelectorTest {
                  ServerSocketChannel serverSocketChannel1 = ServerSocketChannel.open();
                  ServerSocketChannel serverSocketChannel2 = ServerSocketChannel.open();
                  ServerSocketChannel serverSocketChannel3 = ServerSocketChannel.open()) {
-                serverSocketChannel1.bind(new InetSocketAddress("localhost",43210));
+                serverSocketChannel1.bind(new InetSocketAddress("localhost", 43210));
                 serverSocketChannel1.configureBlocking(false);
                 //注册时操作必须是通道所支持的操作的子集，可以调用通道的validOps获得通道支持的操作
                 serverSocketChannel1.register(selector, serverSocketChannel1.validOps());
-                serverSocketChannel2.bind(new InetSocketAddress("localhost",43211));
+                serverSocketChannel2.bind(new InetSocketAddress("localhost", 43211));
                 serverSocketChannel2.configureBlocking(false);
                 serverSocketChannel2.register(selector, serverSocketChannel2.validOps());
-                serverSocketChannel3.bind(new InetSocketAddress("localhost",43212));
+                serverSocketChannel3.bind(new InetSocketAddress("localhost", 43212));
                 serverSocketChannel3.configureBlocking(false);
                 serverSocketChannel3.register(selector, serverSocketChannel3.validOps());
 
-                while(!stop) {
+                while (!stop) {
                     /**
                      * 选择器的用法通常是调用一次select方法，然后获取他的selectKey()，遍历去除后删除
                      */
@@ -70,7 +70,7 @@ public class NIOSelectorTest {
                             buffer.flip();
                             byte[] bytes = new byte[buffer.remaining()];
                             buffer.get(bytes);
-                            System.out.println(socketChannel.getRemoteAddress()+ " "+ socketChannel.getLocalAddress() + " , serverSocket,:" + NIOByteBufferTest.toObject(bytes, String.class));
+                            System.out.println(socketChannel.getRemoteAddress() + " " + socketChannel.getLocalAddress() + " , serverSocket,:" + NIOByteBufferTest.toObject(bytes, String.class));
                             //端链路关闭时需要释放通道，否则选择器会认为该通道一直就绪会一直取数据。同时也别忘了取消键
                             socketChannel.close();
                             selectionKey.cancel();
@@ -79,7 +79,7 @@ public class NIOSelectorTest {
                         iterator.remove();
                     }
                 }
-                if(selector!=null){
+                if (selector != null) {
                     selector.close();
                 }
 
@@ -103,7 +103,7 @@ public class NIOSelectorTest {
                     String str = NIOByteBufferTest.toObject(bytes, String.class);
                     String[] arrayStr = str.split(",");
                     int port = arrayStr.length > 1 ? Integer.valueOf(arrayStr[0]) : 0;
-                    socketChannel.connect(new InetSocketAddress("localhost",port));
+                    socketChannel.connect(new InetSocketAddress("localhost", port));
                     while (!socketChannel.finishConnect()) {
                         System.out.println(Thread.currentThread().getName() + ": connecting");
                     }
