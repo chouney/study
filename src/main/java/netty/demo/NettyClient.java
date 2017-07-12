@@ -8,6 +8,7 @@ import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
 import netty.demo.handler.DemoClientHandler;
+import netty.demo.handler.PackingClientHandler;
 import netty.nio.NIOByteBufferTest;
 
 import java.io.IOException;
@@ -35,7 +36,9 @@ public class NettyClient {
                     .handler(new ChannelInitializer<SocketChannel>() {
                         @Override
                         protected void initChannel(SocketChannel ch) throws Exception {
-                                ch.pipeline().addLast(clientHandler);
+                                ch.pipeline()
+                                        .addLast(new PackingClientHandler());
+//                                        .addLast(clientHandler);
                         }
                     });
             ChannelFuture future = bootstrap.connect(new InetSocketAddress(address, port)).sync();
