@@ -39,19 +39,19 @@ public class FutureTaskTest {
         }
     }
     public static void main(String[] args){
-        final FutureTaskTest f = new FutureTaskTest();
-        Runnable r = new Runnable() {
-            public void run() {
-                System.out.println(f.executeTask("task1"));
-            }
-        };
-        Runnable r1 = new Runnable() {
-            public void run() {
-                System.out.println(f.executeTask("task1"));
-            }
-        };
-        new Thread(r).start();
-        new Thread(r1).start();
+//        final FutureTaskTest f = new FutureTaskTest();
+//        Runnable r = new Runnable() {
+//            public void run() {
+//                System.out.println(f.executeTask("task1"));
+//            }
+//        };
+//        Runnable r1 = new Runnable() {
+//            public void run() {
+//                System.out.println(f.executeTask("task1"));
+//            }
+//        };
+//        new Thread(r).start();
+//        new Thread(r1).start();
     }
 
 }

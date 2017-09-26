@@ -25,6 +25,10 @@ public class TreeNode extends Node {
 //        System.out.println(super.parent);
     }
 
+    public TreeNode(int val) {
+        this.val = val;
+    }
+
     public TreeNode(Enum color) {
         this.color = color;
     }

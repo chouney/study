@@ -65,6 +65,7 @@ public class NIOChannelTest {
                     }
                     System.out.println("connecting finished");
                     socketChannel.write(this.buffer1);
+                    socketChannel.close();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -97,6 +98,7 @@ public class NIOChannelTest {
                             socketChannel.close();
                             //读完缓冲区必须clear，
                             in.clear();
+                            socketChannel.close();
                         }
 
                     }
