@@ -21,6 +21,9 @@ public class TreeNode extends Node {
 
     public TreeNode() {
         super();
+        this.lchild = TreeNode.nil;
+        this.rchild = TreeNode.nil;
+        this.parent = TreeNode.nil;
 //        a();
 //        System.out.println(super.parent);
     }

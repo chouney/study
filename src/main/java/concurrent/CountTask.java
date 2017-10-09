@@ -1,5 +1,7 @@
 package concurrent;
 
+import java.util.Arrays;
+import java.util.Objects;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.Future;
@@ -40,9 +42,16 @@ public class CountTask extends RecursiveTask<Integer>{
         return sum;
     }
     public static void main(String[] args) throws ExecutionException, InterruptedException {
-        ForkJoinPool forkJoinPool = new ForkJoinPool();
-        CountTask countTask = new CountTask(0,10000);
-        Future<Integer> result = forkJoinPool.submit(countTask);
-        System.out.println(result.get());
+//        ForkJoinPool forkJoinPool = new ForkJoinPool();
+//        CountTask countTask = new CountTask(0,10000);
+//        Future<Integer> result = forkJoinPool.submit(countTask);
+//        System.out.println(result.get());
+        String[] params = {"qwe","123"};
+        StringBuilder concat = new StringBuilder();
+        if(Objects.nonNull(params)){
+            Arrays.stream(params).forEach((String param) -> concat.append(param).append("=").
+                    append(Arrays.stream(new String[]{}).findFirst().orElse("null")).append("&"));
+        }
+        System.out.println(concat.toString());
     }
 }

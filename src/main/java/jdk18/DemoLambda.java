@@ -1,7 +1,9 @@
 package jdk18;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.function.IntFunction;
 
 /**
  * Created by chriszhang on 2017/6/14.
@@ -22,6 +24,10 @@ public class DemoLambda {
     }
 
 
+
+
     public static void main(String[] args){
+        DemoLambda demoLambda = new DemoLambda();
+        System.out.println("/api/v1/guarantor/aweqwe/qwe".matches("^/ap1/v\\d+/guarantor/.*"));
     }
 }

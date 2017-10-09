@@ -2,6 +2,8 @@
 // All rights reserved
 package demo.unpackage;
 
+import com.sun.org.apache.xpath.internal.operations.String;
+
 /**
  * 通过该demo得出两个结论：
  * 1.封装类在不遇到算数符号的情况下不会执行自动拆箱
@@ -26,5 +28,7 @@ public class DemoPackageAndUnpackage {
         System.out.println(c.equals(a+b));
         System.out.println(g==(a+b));
         System.out.println(g.equals(a+b));
+        int[][] dir = {{1,0},{-1,0},{0,1},{0,-1}};
+        char[] chs = "asdasd".toCharArray();
     }
 }
