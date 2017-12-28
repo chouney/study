@@ -1,6 +1,6 @@
 // Copyright (C) 2017 Meituan
 // All rights reserved
-package design;
+package design.singleton;
 
 import algorithm.Main;
 

@@ -1,5 +1,14 @@
 package algorithm;
 
+import org.joda.time.DateTime;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.TemporalField;
 import java.util.*;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
@@ -61,9 +70,16 @@ public class Solution {
             }
         }
     }
-    public static void main(String[] args) {
-        Solution s = new Solution();
-        new StringBuilder().length();
-        System.out.println(s.permuteUnique(new int[]{1,1,2}));
+    public static void main(String[] args) throws ParseException {
+//        Solution s = new Solution();
+//        new StringBuilder().length();
+//        System.out.println(s.permuteUnique(new int[]{1,1,2}));
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        String str = "1990-04-15T00:00:00";
+        System.out.println(sdf.format(sdf.parse(str)));
+        LocalDateTime localDateTime = LocalDateTime.parse(str);
+        System.out.println(localDateTime.toString());
+        DateTime dateTime = DateTime.parse(str);
+        System.out.println(dateTime.toDate());
     }
 }
