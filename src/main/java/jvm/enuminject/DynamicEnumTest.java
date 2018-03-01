@@ -1,4 +1,4 @@
-package demo.enuminject;
+package jvm.enuminject;
 
 import java.lang.reflect.AccessibleObject;
 import java.lang.reflect.Array;

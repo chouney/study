@@ -1,6 +1,6 @@
 // Copyright (C) 2017 Meituan
 // All rights reserved
-package demo.classload;
+package jvm.classload;
 
 import java.lang.invoke.*;
 
