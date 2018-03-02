@@ -1,7 +1,5 @@
 // Copyright (C) 2017 Meituan
 // All rights reserved
-package algorithm;
-
 /**
  * @author manatea
  * @version 1.0

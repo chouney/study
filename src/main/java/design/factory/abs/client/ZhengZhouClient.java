@@ -1,6 +1,6 @@
-package design.factory.abs.client;
+package factory.abs.client;
 
-import design.factory.abs.ingredient.SuperIngredientFactory;
+import factory.abs.ingredient.SuperIngredientFactory;
 
 /**
  * Created by chriszhang on 2017/12/28.

@@ -1,6 +1,6 @@
-package design.factory.abs.client;
+package factory.abs.client;
 
-import design.factory.abs.ingredient.InCashIngredientFactory;
+import factory.abs.ingredient.InCashIngredientFactory;
 
 /**
  * Created by chriszhang on 2017/12/28.

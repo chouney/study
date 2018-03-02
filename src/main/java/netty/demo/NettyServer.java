@@ -1,20 +1,19 @@
-package netty.demo;
+package demo;
 
+import demo.handler.PackingServerHandler;
 import io.netty.bootstrap.ServerBootstrap;
-import io.netty.buffer.ByteBuf;
-import io.netty.buffer.Unpooled;
-import io.netty.channel.*;
+import io.netty.channel.ChannelFuture;
+import io.netty.channel.ChannelInitializer;
+import io.netty.channel.ChannelOption;
+import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
-import netty.demo.handler.DemoServerHandler;
-import netty.demo.handler.PackingServerHandler;
-import netty.nio.NIOByteBufferTest;
 
 import java.net.InetSocketAddress;
 
 /**
- * 一个简陋的不符合规范的NettyServer,具体架构查看笔记
+ * 一个简陋的不符合规范的NettyServer
  * 因此这里参照官方的user guide
  * Created by chriszhang on 2017/6/24.
  */

@@ -1,6 +1,6 @@
 // Copyright (C) 2018 Meituan
 // All rights reserved
-package pearls.little.threadapp;
+package little.threadapp;
 
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadFactory;

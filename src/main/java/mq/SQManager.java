@@ -1,5 +1,3 @@
-package sq;
-
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadFactory;
@@ -7,6 +5,8 @@ import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.ReentrantLock;
 
 /**
+ * 生产者-消费者模型
+ * 管理器
  * Created by manatea on 2017/3/14.
  */
 public class SQManager {

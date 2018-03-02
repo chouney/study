@@ -1,12 +1,12 @@
-package design.factory.method.creator;
+package factory.method.creator;
 
-import design.factory.method.Pizza;
-import design.factory.method.PizzaStore;
-import design.factory.method.product.ZhengZhouApplePizza;
-import design.factory.method.product.ZhengZhouBananaPizza;
-import design.factory.method.product.ZhengZhouOrangePizza;
-import design.factory.simple.BananaPizza;
-import design.factory.simple.OrangePizza;
+import factory.method.Pizza;
+import factory.method.PizzaStore;
+import factory.method.product.ZhengZhouApplePizza;
+import factory.method.product.ZhengZhouBananaPizza;
+import factory.method.product.ZhengZhouOrangePizza;
+import factory.simple.BananaPizza;
+import factory.simple.OrangePizza;
 
 /**
  * Created by chriszhang on 2017/12/28.

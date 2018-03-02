@@ -1,9 +1,5 @@
 // Copyright (C) 2018 Meituan
 // All rights reserved
-package algorithm;
-
-import sun.jvm.hotspot.utilities.Assert;
-
 import java.util.Arrays;
 
 /**

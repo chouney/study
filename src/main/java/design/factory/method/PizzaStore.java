@@ -1,4 +1,4 @@
-package design.factory.method;
+package factory.method;
 
 /**
  * 工厂维度

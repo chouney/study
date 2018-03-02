@@ -1,6 +1,6 @@
-package design.factory.method.product;
+package factory.method.product;
 
-import design.factory.method.Pizza;
+import factory.method.Pizza;
 
 /**
  * Created by chriszhang on 2017/12/28.

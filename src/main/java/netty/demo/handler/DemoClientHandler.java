@@ -1,15 +1,12 @@
-package netty.demo.handler;
+package demo.handler;
 
 import io.netty.buffer.ByteBuf;
-import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
-import netty.nio.NIOByteBufferTest;
-
-import java.io.IOException;
-import java.util.concurrent.Executor;
+import nio.NIOByteBufferTest;
 
 /**
+ * client端的handler
  * Created by chriszhang on 2017/7/8.
  */
 public class DemoClientHandler extends ChannelInboundHandlerAdapter {

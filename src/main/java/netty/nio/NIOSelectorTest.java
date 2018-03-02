@@ -1,6 +1,6 @@
 // Copyright (C) 2017 Meituan
 // All rights reserved
-package netty.nio;
+package nio;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;

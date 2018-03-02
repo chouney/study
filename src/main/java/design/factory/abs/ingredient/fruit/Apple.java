@@ -1,4 +1,4 @@
-package design.factory.abs.ingredient.fruit;
+package factory.abs.ingredient.fruit;
 
 /**
  * Created by chriszhang on 2017/12/28.

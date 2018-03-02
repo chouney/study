@@ -1,6 +1,6 @@
 // Copyright (C) 2017 Meituan
 // All rights reserved
-package jvm.classload;
+package classload;
 
 /**
  * 单分派和多分派的demo，分别解释了动态分派和静态分派所属

@@ -1,4 +1,4 @@
-package design.factory.simple;
+package factory.simple;
 
 /**
  * 披萨实体

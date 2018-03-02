@@ -1,5 +1,3 @@
-package algorithm;
-
 import java.util.*;
 public class Main{
     static int index = 0;

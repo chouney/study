@@ -1,7 +1,11 @@
+package classload;
+
 import java.io.IOException;
 import java.io.InputStream;
 
 /**
+ * 类加载Demo,
+ * 在main方法中通过定义一个新的类加载器实现类加载
  * Created by manatea on 2016/12/26.
  */
 public class ClassLoaderTest {
@@ -26,7 +30,7 @@ public class ClassLoaderTest {
             }
         };
         System.out.println(ClassLoaderTest.class.getCanonicalName());
-        Object o = classLoader.loadClass("ClassLoaderTest").newInstance();
+        Object o = classLoader.loadClass("jvm.classload.ClassLoaderTest").newInstance();
         System.out.println(o.getClass()+ " : "+ o.getClass().getClassLoader().toString());
         System.out.println(o instanceof ClassLoaderTest);
 

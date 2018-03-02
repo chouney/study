@@ -1,7 +1,7 @@
-package design.factory.abs.client;
+package factory.abs.client;
 
-import design.factory.abs.IngredientFactory;
-import design.factory.abs.PizzaClient;
+import factory.abs.IngredientFactory;
+import factory.abs.PizzaClient;
 
 /**
  * Created by chriszhang on 2017/12/28.

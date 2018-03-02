@@ -1,6 +1,5 @@
-package sq;
-
 /**
+ * 商品实例
  * Created by manatea on 2017/3/14.
  */
 public class Product {

@@ -1,4 +1,4 @@
-package jvm.classload;
+package classload;
 // Copyright (C) 2017 Meituan
 // All rights reserved
 

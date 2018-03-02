@@ -1,5 +1,3 @@
-package algorithm;
-
 /**
  * 红黑树
  * Created by manatea on 2016/10/26.

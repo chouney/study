@@ -1,4 +1,4 @@
-package netty.nio;
+package nio;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
@@ -8,7 +8,6 @@ import java.nio.channels.AsynchronousSocketChannel;
 import java.nio.channels.CompletionHandler;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
 import java.util.concurrent.locks.LockSupport;
 
 /**

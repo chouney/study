@@ -1,18 +1,18 @@
-package concurrent;
-
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReadWriteLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 /**
+ * 锁降级demo
  * Created by manatea on 2017/3/28.
  */
 public class LockDown implements Runnable{
     private ReadWriteLock lock ;
     private static int mod = 1;
-    private static volatile boolean  update = false;
+    private static AtomicBoolean update= new AtomicBoolean(false);
     private Lock readLock;
     private Lock writeLock;
     public LockDown(ReadWriteLock lock) {
@@ -30,16 +30,15 @@ public class LockDown implements Runnable{
                 e.printStackTrace();
             }
             readLock.lock();
-            if(!update){
+            if(!update.get()){
                 //进行更新，获取写锁前必须先释放读锁
                 readLock.unlock();
+
                 //锁降级开始
                 writeLock.lock();
                 try {
                     //双重检查，防止多次更新
-                    if(!update) {
-                        //更新数据
-                        update = true;
+                    if(update.compareAndSet(false,true)) {
                         mod++;
                     }
                     readLock.lock();
@@ -47,6 +46,7 @@ public class LockDown implements Runnable{
                     writeLock.unlock();
                 }
                 //锁降级完成
+
             }
             try{
                 System.out.println(mod);

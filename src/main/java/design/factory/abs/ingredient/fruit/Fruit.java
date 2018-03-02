@@ -1,4 +1,4 @@
-package design.factory.abs.ingredient.fruit;
+package factory.abs.ingredient.fruit;
 
 /**
  * 抽象原料

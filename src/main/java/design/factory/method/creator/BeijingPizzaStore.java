@@ -1,10 +1,10 @@
-package design.factory.method.creator;
+package factory.method.creator;
 
-import design.factory.method.Pizza;
-import design.factory.method.PizzaStore;
-import design.factory.method.product.BeijingApplePizza;
-import design.factory.method.product.BeijingBananaPizza;
-import design.factory.method.product.BeijingOrangePizza;
+import factory.method.Pizza;
+import factory.method.PizzaStore;
+import factory.method.product.BeijingApplePizza;
+import factory.method.product.BeijingBananaPizza;
+import factory.method.product.BeijingOrangePizza;
 
 /**
  * Created by chriszhang on 2017/12/28.

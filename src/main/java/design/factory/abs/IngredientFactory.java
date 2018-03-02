@@ -1,7 +1,7 @@
-package design.factory.abs;
+package factory.abs;
 
-import design.factory.abs.ingredient.fruit.Fruit;
-import design.factory.abs.ingredient.vegetable.Vegetable;
+import factory.abs.ingredient.fruit.Fruit;
+import factory.abs.ingredient.vegetable.Vegetable;
 
 /**
  * 生产原材料的接口，每个子工厂都负责生产某一种原料

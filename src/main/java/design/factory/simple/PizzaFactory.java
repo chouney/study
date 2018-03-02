@@ -1,4 +1,4 @@
-package design.factory.simple;
+package factory.simple;
 
 /**
  * 生产披萨的工厂

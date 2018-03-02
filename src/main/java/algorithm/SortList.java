@@ -1,5 +1,3 @@
-package algorithm;
-
 /**
  * Created by manatea on 2016/11/30.
  */

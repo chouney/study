@@ -1,5 +1,7 @@
-package netty.demo;
+package demo;
 
+import demo.handler.DemoClientHandler;
+import demo.handler.PackingClientHandler;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
@@ -7,9 +9,7 @@ import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
-import netty.demo.handler.DemoClientHandler;
-import netty.demo.handler.PackingClientHandler;
-import netty.nio.NIOByteBufferTest;
+import nio.NIOByteBufferTest;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
@@ -19,6 +19,8 @@ import java.util.concurrent.Executors;
 
 
 /**
+ * nettyDemo
+ * netty客户端
  * Created by chriszhang on 2017/6/28.
  */
 public class NettyClient {

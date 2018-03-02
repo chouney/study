@@ -1,19 +1,10 @@
-package algorithm;
-
-import org.joda.time.DateTime;
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.ZonedDateTime;
-import java.time.format.DateTimeFormatter;
-import java.time.temporal.TemporalField;
-import java.util.*;
-import java.util.concurrent.Callable;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.FutureTask;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.List;
 
 public class Solution {
     public String largestNumber(int[] nums) {
@@ -49,6 +40,7 @@ public class Solution {
         }
         return s.toString();
     }
+
     public List<List<Integer>> permuteUnique(int[] nums) {
         List<List<Integer>> result = new ArrayList<>();
         Arrays.sort(nums);
@@ -79,7 +71,5 @@ public class Solution {
         System.out.println(sdf.format(sdf.parse(str)));
         LocalDateTime localDateTime = LocalDateTime.parse(str);
         System.out.println(localDateTime.toString());
-        DateTime dateTime = DateTime.parse(str);
-        System.out.println(dateTime.toDate());
     }
 }

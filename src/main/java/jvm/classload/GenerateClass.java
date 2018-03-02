@@ -1,6 +1,6 @@
 // Copyright (C) 2017 Meituan
 // All rights reserved
-package jvm.classload;
+package classload;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;

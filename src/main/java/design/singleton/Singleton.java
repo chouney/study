@@ -1,8 +1,6 @@
 // Copyright (C) 2017 Meituan
 // All rights reserved
-package design.singleton;
-
-import algorithm.Main;
+package singleton;
 
 /**
  * @author manatea
@@ -14,29 +12,29 @@ public class Singleton {
      * 单例模式1
      */
     private static class MainHolder{
-        private static Main main = new Main();
+        private static Singleton singleton = new Singleton();
     }
 
-    public static Main getMainInstance(){
-        return MainHolder.main;
+    public static Singleton getMainInstance(){
+        return MainHolder.singleton;
     }
     public static void main(String[] args){
-        Main m = getMainInstance();
-        Main m2 = getMainInstance2();
+        Singleton singleton = getMainInstance();
+        Singleton singleton2 = getMainInstance2();
     }
 
     /**
      * 单例模式2
      */
-    private static volatile Main main2;
-    public static Main getMainInstance2(){
-        if(main2 == null){
+    private static volatile Singleton singleton2;
+    public static Singleton getMainInstance2(){
+        if(singleton2 == null){
             synchronized (Singleton.class){
-                if(main2 == null) {
-                    main2 = new Main();
+                if(singleton2 == null) {
+                    singleton2 = new Singleton();
                 }
             }
         }
-        return main2;
+        return singleton2;
     }
 }

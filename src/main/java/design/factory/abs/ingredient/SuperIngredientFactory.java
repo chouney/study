@@ -1,10 +1,10 @@
-package design.factory.abs.ingredient;
+package factory.abs.ingredient;
 
-import design.factory.abs.IngredientFactory;
-import design.factory.abs.ingredient.fruit.Fruit;
-import design.factory.abs.ingredient.fruit.Orange;
-import design.factory.abs.ingredient.vegetable.Egg;
-import design.factory.abs.ingredient.vegetable.Vegetable;
+import factory.abs.IngredientFactory;
+import factory.abs.ingredient.fruit.Fruit;
+import factory.abs.ingredient.fruit.Orange;
+import factory.abs.ingredient.vegetable.Egg;
+import factory.abs.ingredient.vegetable.Vegetable;
 
 /**
  * Created by chriszhang on 2017/12/28.

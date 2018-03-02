@@ -1,6 +1,6 @@
-package sq;
-
 /**
+ *
+ * 商品缓冲池实例
  * Created by manatea on 2017/3/14.
  */
 public class ProductBuffer {

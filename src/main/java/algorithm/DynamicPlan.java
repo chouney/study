@@ -1,7 +1,5 @@
 // Copyright (C) 2018 Meituan
 // All rights reserved
-package algorithm;
-
 /**
  * 动态规划问题集
  * @author manatea

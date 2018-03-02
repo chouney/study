@@ -1,8 +1,4 @@
-package jdk18;
-
 import java.util.List;
-import java.util.Objects;
-import java.util.function.Consumer;
 
 /**
  * Created by chriszhang on 2017/6/14.
