@@ -1,6 +1,7 @@
 package algorithm;
 
 /**
+ * 二分查找算法
  * Created by chriszhang on 2017/7/20.
  */
 public class BinarySearch {

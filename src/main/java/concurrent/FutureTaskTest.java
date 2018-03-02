@@ -6,9 +6,11 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.FutureTask;
 
 /**
+ * FutureTask demo
  * Created by manatea on 2017/4/21.
  */
 public class FutureTaskTest {
+    //存储Task
     private ConcurrentHashMap<String,FutureTask<String>> map = new ConcurrentHashMap<String, FutureTask<String>>();
 
     private String executeTask(final String taskName){
@@ -29,6 +31,7 @@ public class FutureTaskTest {
                     futureTask.run();
                 }
             }
+            //等待Task结果返回
             try {
                 return futureTask.get();
             } catch (InterruptedException e) {
@@ -39,19 +42,19 @@ public class FutureTaskTest {
         }
     }
     public static void main(String[] args){
-//        final FutureTaskTest f = new FutureTaskTest();
-//        Runnable r = new Runnable() {
-//            public void run() {
-//                System.out.println(f.executeTask("task1"));
-//            }
-//        };
-//        Runnable r1 = new Runnable() {
-//            public void run() {
-//                System.out.println(f.executeTask("task1"));
-//            }
-//        };
-//        new Thread(r).start();
-//        new Thread(r1).start();
+        final FutureTaskTest f = new FutureTaskTest();
+        Runnable r = new Runnable() {
+            public void run() {
+                System.out.println(f.executeTask("task1"));
+            }
+        };
+        Runnable r1 = new Runnable() {
+            public void run() {
+                System.out.println(f.executeTask("task1"));
+            }
+        };
+        new Thread(r).start();
+        new Thread(r1).start();
     }
 
 }

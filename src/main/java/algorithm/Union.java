@@ -3,6 +3,7 @@ package algorithm;
 import java.util.Arrays;
 
 /**
+ * 并查集算法
  * Created by manatea on 2017/3/29.
  */
 public class Union {

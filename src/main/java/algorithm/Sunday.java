@@ -3,6 +3,7 @@ package algorithm;
 import java.util.Arrays;
 
 /**
+ * 字符串匹配算法Sunday
  * Created by manatea on 2016/11/30.
  */
 public class Sunday {

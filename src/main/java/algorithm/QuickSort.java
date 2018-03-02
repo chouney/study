@@ -3,6 +3,7 @@ package algorithm;
 import java.util.Arrays;
 
 /**
+ * 快速排序
  * Created by manatea on 2016/11/30.
  */
 public class QuickSort {

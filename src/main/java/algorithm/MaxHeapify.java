@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.PriorityQueue;
 
 /**
+ * 最大堆
  * Created by manatea on 2016/11/30.
  */
 public class MaxHeapify {

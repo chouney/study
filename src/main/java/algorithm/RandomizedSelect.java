@@ -3,6 +3,7 @@ package algorithm;
 import java.util.Arrays;
 
 /**
+ * 分治思想解决查询数组中第n大的数,时间复杂度为O(nlogn)
  * Created by manatea on 2016/11/30.
  */
 public class RandomizedSelect {

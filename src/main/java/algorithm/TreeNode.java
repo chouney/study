@@ -1,6 +1,7 @@
 package algorithm;
 
 /**
+ * 红黑树节点
  * Created by manatea on 2016/10/19.
  */
 public class TreeNode extends Node {

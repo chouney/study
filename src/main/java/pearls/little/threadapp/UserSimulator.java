@@ -71,7 +71,7 @@ public class UserSimulator extends Thread{
 
     public static void main(String[] args){
         WebServer webServer = new WebServer(50);
-        UserSimulator userSimulator = new UserSimulator(webServer,200,10);
+        UserSimulator userSimulator = new UserSimulator(webServer,724,500);
         Counter counter = new Counter(webServer,userSimulator);
         counter.start();
         userSimulator.start();
