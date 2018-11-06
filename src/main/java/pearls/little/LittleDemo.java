@@ -1,6 +1,6 @@
 // Copyright (C) 2018 Meituan
 // All rights reserved
-package little;
+package pearls.little;
 
 import java.util.Scanner;
 import java.util.concurrent.BlockingQueue;

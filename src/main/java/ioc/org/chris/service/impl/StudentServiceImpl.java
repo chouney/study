@@ -1,8 +1,8 @@
 // Copyright (C) 2017 Meituan
 // All rights reserved
-package org.chris.service.impl;
+package ioc.org.chris.service.impl;
 
-import org.chris.service.StudentService;
+import ioc.org.chris.service.StudentService;
 
 /**
  * @author manatea

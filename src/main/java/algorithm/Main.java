@@ -8,6 +8,35 @@ public class Main{
             this.cityId = cityId;
         }
     }
+
+    public static void solve(){
+        Scanner cin = new Scanner(System.in);
+        int t,n,m;
+        while(cin.hasNextInt()){
+            t = cin.nextInt();
+            for(int i = 0;i<t;i++){
+                n = cin.nextInt();
+                m = cin.nextInt();
+                boolean[] a = new boolean[n+1],b = new boolean[n+1];
+                for(int j = 0;j<m;j++){
+                    int x = cin.nextInt();
+                    int y = cin.nextInt();
+
+                    if(a[x]&& a[y] || b[x] && b[y]){
+                        System.out.println("No");
+                        return;
+                    }
+                    if(a[y] && b[x])
+                        continue;
+                    if(a[y] || b[x])
+                        b[x] = a[y] = true;
+                    else
+                        a[x] = b[y] = true;
+                }
+                System.out.println("Yes");
+            }
+        }
+    }
     public static class Line{
         int f;
         int t;
