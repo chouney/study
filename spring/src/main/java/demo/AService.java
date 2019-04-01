@@ -1,8 +1,8 @@
-package spring.demo;
+package demo;
 
+import annotation.AopTest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import spring.annotation.AopTest;
 
 /**
  * @author chriszhang

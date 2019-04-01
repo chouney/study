@@ -1,3 +1,5 @@
+package algorithm;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
@@ -62,14 +64,47 @@ public class Solution {
             }
         }
     }
+
+
+
+
+    public static int firstUniqChar(String s) {
+
+        int index = -1;
+        /*思路：
+        1.遍历整个字符串，用第一个和后续的每一个比较
+        2.如果没有赋值-1
+        3.每一个进行比较，相同了，i++使用下一个字符进行比较
+        4.找到有相同的字符以后给index赋值
+        */
+        char[] stringArr = s.toCharArray();
+        for(int i=0;i<s.length();i++){
+            for (int j=0;j<s.length();j++){
+                if (i==j){
+                    continue;
+                }
+                if (stringArr[i] != stringArr[j]){
+                    index = i-1;
+                    return index;
+                }
+            }
+
+        }
+
+        return index;
+    }
+
+
     public static void main(String[] args) throws ParseException {
 //        Solution s = new Solution();
 //        new StringBuilder().length();
 //        System.out.println(s.permuteUnique(new int[]{1,1,2}));
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        /*SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         String str = "1990-04-15T00:00:00";
         System.out.println(sdf.format(sdf.parse(str)));
         LocalDateTime localDateTime = LocalDateTime.parse(str);
-        System.out.println(localDateTime.toString());
+        System.out.println(localDateTime.toString());*/
+
+        System.out.print(firstUniqChar("loveleetcode"));
     }
 }

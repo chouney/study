@@ -1,9 +1,8 @@
 package spring;
 
+import demo.AService;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import spring.demo.AService;
-import spring.demo.CModel;
 
 /**
  * @author chriszhang

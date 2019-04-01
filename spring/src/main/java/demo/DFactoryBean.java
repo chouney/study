@@ -1,4 +1,4 @@
-package spring.demo;
+package demo;
 
 import org.springframework.beans.factory.FactoryBean;
 import org.springframework.stereotype.Component;

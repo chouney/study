@@ -1,4 +1,4 @@
-package spring.demo;
+package demo;
 
 /**
  * @author chriszhang
