@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://dubbo.apache.org/schema/dubbo"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+       http://dubbo.apache.org/schema/dubbo http://dubbo.apache.org/schema/dubbo/dubbo.xsd">
+
+    <dubbo:application name="demo-provider"/>
+    <!--<dubbo:metadata-report address="http://127.0.0.1:2181"/>-->
+
+    <dubbo:registry address="multicast://224.0.0.1:1234"/>
+    <dubbo:protocol name="dubbo" port="20880"/>
+
+    <bean id= "miliSecIdGenerator" class="org.v3.server.core.MiliSecondSequenceGenerator"/>
+    <bean id= "secondIdGenerator" class="org.v3.server.core.SecondSequenceGenerator"/>
+    <bean id="idGeneratorService" class="org.v3.server.service.impl.IdGeneratorServiceImpl"/>
+
+    <dubbo:service interface="org.v3.client.service.IdGeneratorService" ref="idGeneratorService"/>
+
+
+
+</beans>
