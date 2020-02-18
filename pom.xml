@@ -14,8 +14,14 @@
     <modules>
         <module>ioc</module>
         <module>netty</module>
-        <module>spring</module>
         <module>activiti</module>
+        <module>algorithm</module>
+        <module>concurrent</module>
+        <module>design</module>
+        <module>jdk18</module>
+        <module>jvm</module>
+        <module>mq</module>
+        <module>pearls</module>
         <module>chris_id</module>
     </modules>
     <build>

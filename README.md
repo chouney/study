@@ -2,9 +2,9 @@ chris个人练习
 ----------------------
 > 不积跬步无以至千里 no pain no gain
 
+- __activiti__: activiti练习(activiti practice)
 - __algorithm__：算法练习 (algorithm practice)
 - __concurrent__：并发工具练习 (concurrent practice)
-- __ddd__：领域驱动设计demo (Domain Driven Design demo)
 - __design__：设计模式demo (Design Model demo)
 - __ioc__：ioc模式demo (IOC demo)
 - __jdk18__：jdk1.8特性demo (jdk1.8 demo)
