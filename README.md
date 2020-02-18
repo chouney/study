@@ -12,3 +12,4 @@ chris个人练习
 - __mq__：mq模型 (MQ demo)
 - __netty__：nio及netty模型demo(nio&netty demo)
 - __pearls__：定律demo:(Pearls demo)
+- __chris_id(chris_id_client)__: 分布式id生成器练习(IDGenerator practice)
