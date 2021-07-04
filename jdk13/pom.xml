@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>study</groupId>
-    <artifactId>jdk18</artifactId>
+    <artifactId>jdk13</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <dependencies>
@@ -18,8 +18,8 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
-                    <source>8</source>
-                    <target>8</target>
+                    <source>1.13</source>
+                    <target>1.13</target>
                 </configuration>
             </plugin>
         </plugins>

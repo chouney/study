@@ -1,74 +1,72 @@
 package org.core;
 
-import org.springframework.util.StringUtils;
+import java.util.Arrays;
+import java.util.Scanner;
 
-import java.io.*;
-import java.math.BigDecimal;
-import java.net.URLEncoder;
-import java.util.*;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+public class Main {
+    public static void main(String args[]) {
 
-public class Main{
-    public static void main(String args[]) throws IOException {
-        parseAndQuest("input.in");
+
+
+        System.out.println(Arrays.toString(findTopK(new int[]{9,5,3,7,5,2,1},3)));
     }
 
-
-    public static void parseAndQuest(String inputDataPath) throws IOException {
-        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(new FileInputStream(
-                Main.class.getResource("/").getPath()+"/"+inputDataPath
-        )));
-        Pattern pattern = Pattern.compile("\"GET (.*?) HTTP/1\\.0\"");
-        Pattern pattern1 = Pattern.compile("arrCity=(.*?)&.*&?depCity=(.*?)&.*&?goDate=(.*?)&");
-        String questFormat = "http://l-ttsirouteroff1.f.cn2.qunar.com:8080/innerapi/twell/mt/debug?wrappers=xnz.th.qunar.com&fromCity=%s&toCity=%s&fromDate=%s&adultNum=-1&childNum=-1&cabinClass=ALL&%E6%90%9C%E7%B4%A2=%E6%8F%90%E4%BA%A4";
-        String line;
-        int totalCount = 0;
-        int correctCount = 0;
-        int realSuccessCount = 0;
-        Set<Integer> set = new HashSet<>();
-        while(!StringUtils.isEmpty(line = bufferedReader.readLine())){
-            Matcher matcher = pattern.matcher(line);
-            if(matcher.find()){
-                String url = matcher.group(1);
-                //子匹配
-                Matcher matcher1 = pattern1.matcher(url);
-                System.out.println(url);
-                if(matcher1.find()){
-                    String arrCity = matcher1.group(1);
-                    System.out.println(arrCity);
-                    String depCity = matcher1.group(2);
-                    System.out.println(depCity);
-                    String goDate = matcher1.group(3);
-                    System.out.println(goDate);
-                    if(set.contains((arrCity+","+depCity+","+goDate).hashCode())){
-                        continue;
-                    }
-                    set.add((arrCity+","+depCity+","+goDate).hashCode());
-                    if(calCount(arrCity) && calCount(depCity) && calCount(goDate)){
-                        //成功统计
-                        String reqUrl = String.format(questFormat, URLEncoder.encode(arrCity,"utf-8"),URLEncoder.encode(depCity,"utf-8"),URLEncoder.encode(goDate,"utf-8"));
-
-                        correctCount++;
-                    }
-                }
-                totalCount++;
+    private static int[] findTopK(int[] arr,int topK){
+        int[] heap = buildHeap(arr,topK);
+        for(int i = topK;i<arr.length;i++){
+            int temp = heap[0];
+            heap[0] = arr[i];
+            fixHeap(heap);
+            if(heap[0] < temp){
+                heap[0] = temp;
             }
         }
-        System.out.println(correctCount);
-        System.out.println(totalCount);
-        System.out.println(new BigDecimal(correctCount).
-                divide(new BigDecimal(totalCount),4,BigDecimal.ROUND_HALF_UP)
-                .multiply(BigDecimal.valueOf(100)).setScale(2,BigDecimal.ROUND_HALF_UP)+"%");
-    }
-
-    private static boolean calCount(String data){
-        return !StringUtils.isEmpty(data) && data.split(",").length == 3;
+        return heap;
     }
 
 
 
+    private static int[] buildHeap(int[] arr,int topK){
+        int[] heap = new int[topK];
+        for(int i = 0;i<topK;i++){
+            heap[i] = arr[i];
+        }
+        fixHeap(heap);
+        return heap;
+    }
 
+
+    private static void verifyHeap(int[] heap,int i){
+        if((i+1)*2-1>=heap.length&& (i+1)*2>=heap.length){
+            return;
+        }
+        int leftInd = (i+1)*2-1;
+        int rightInd = (i+1)*2;
+        int minInd = i;
+        if(leftInd<heap.length && heap[leftInd] < heap[minInd]){
+            minInd = leftInd;
+        }
+        if(rightInd<heap.length && heap[rightInd] < heap[minInd]){
+            minInd = rightInd;
+        }
+        if(minInd != i) {
+            swap(heap,minInd,i);
+            verifyHeap(heap,minInd);
+        }
+    }
+
+    private static void fixHeap(int[] heap){
+        int mid = (heap.length >> 1) -1;
+        for(int i = mid;i>=0;i--){
+            verifyHeap(heap,i);
+        }
+    }
+
+    private static void swap(int[] arr,int a,int b){
+        int temp = arr[a];
+        arr[a] = arr[b];
+        arr[b] = temp;
+    }
 
 
 }

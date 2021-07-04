@@ -54,6 +54,7 @@ public class IntegerProcessor extends SubmissionPublisher<Integer> implements Fl
 
 
         System.out.println("IntegerProcessor处理数字完成");
+        this.upperSubscription.request(1);
     }
 
     /**
@@ -62,7 +63,7 @@ public class IntegerProcessor extends SubmissionPublisher<Integer> implements Fl
      */
     @Override
     public void onError(Throwable throwable) {
-        System.out.println("IntegerProcessor远端生产数字失败");
+        System.out.println("IntegerProcessor远端生产数字失败: "+ throwable.getMessage());
 
     }
 

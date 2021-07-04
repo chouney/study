@@ -30,7 +30,7 @@ public class SumSubscriber implements Flow.Subscriber<Integer>{
     public void onNext(Integer item) {
         System.out.println("SumSubscriber接收到数字："+item);
 
-        System.out.println(item+5);
+        System.out.println("SumSubscriber处理数字："+(item+5));
 
 
         System.out.println("SumSubscriber处理数字完成");

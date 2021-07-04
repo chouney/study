@@ -68,7 +68,47 @@ public class MaxHeapify {
     public static void main(String[] args) {
         MaxHeapify maxHeapify = new MaxHeapify();
         int a[] = {-1, 3, 7, 1, 2, 9, 6, 3, 8};
+        int a1[] = {-1, 3, 7, 1, 2, 9, 6, 3, 8};
         maxHeapify.heapSort(a);
+        maxHeapify.heapSort1(a1);
         System.out.println(Arrays.toString(a));
+        System.out.println(Arrays.toString(a1));
+    }
+
+
+    public void heapVeri(int a[],int ind,int len){
+        if(ind > (len-1) >> 1){
+            return;
+        }
+        int lt = (ind<<1)+1;
+        int rt = (ind<<1)+2;
+        int rsInd = ind;
+        if(lt < len){
+            rsInd = a[lt] > a[rsInd] ? lt : rsInd;
+        }
+        if(rt < len){
+            rsInd = a[rt] > a[rsInd] ? rt : rsInd;
+        }
+        if(rsInd!=ind) {
+            swap(a, rsInd, ind);
+            heapVeri(a, rsInd, len);
+        }
+    }
+
+    public void buildHeap1(int a[],int len){
+        int lastMid = (len-2)>>1;
+        for(int i = lastMid ; i>=0;i--){
+            heapVeri(a,i,len);
+        }
+    }
+
+    public void heapSort1(int a[]){
+        int[] temp = Arrays.copyOf(a,a.length);
+        buildHeap1(temp,temp.length);
+        for(int j=temp.length-1,i = 0;j>=0;j--,i++){
+            swap(temp,0,j);
+            a[i] = temp[j];
+            maxHeapfy(temp,0,j);
+        }
     }
 }

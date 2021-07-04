@@ -1,0 +1,53 @@
+package point.rules
+
+import com.model.Order
+
+rule "zero"
+    no-loop true
+    lock-on-active true
+    when
+        $s : Order(amount <=100)
+    then
+        $s.setScore($s.getScore());
+        System.out.println("不加积分");
+        update($s);
+end
+
+
+rule "add100"
+    no-loop true
+    lock-on-active true
+    when
+        $s : Order(amount >100 && amount <=500)
+    then
+        $s.setScore($s.getScore()+100);
+        System.out.println("加100积分");
+        update($s);
+
+end
+
+
+rule "add500"
+    no-loop true
+    lock-on-active true
+    when
+        $s : Order(amount > 500 && amount <=1000)
+    then
+        $s.setScore($s.getScore()+500);
+        System.out.println("加500积分");
+        update($s);
+
+end
+
+
+rule "add1000"
+    no-loop true
+    lock-on-active true
+    when
+        $s : Order(amount > 1000)
+    then
+        $s.setScore($s.getScore()+1000);
+        System.out.println("加1000积分");
+        update($s);
+
+end
